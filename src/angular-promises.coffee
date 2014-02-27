@@ -1,3 +1,8 @@
+###
+angular-promises v0.1.0
+Released under the MIT License
+###
+
 $q = null
 $timeout = null
 
@@ -18,10 +23,10 @@ class Promise
   # to keep them in the angular event loop.
   #
   # Note: like jQuery but unlike $q, more than one
-  #  callback can be registered on `done`, `fail` and `always`.
-  #
+  # callback can be registered on `done`, `fail` and `always`.
+
   # Arguments:
-  #   promise - $q.defer().promise to be wrapped (required)
+  #  promise - $q.defer().promise to be wrapped (required)
 
   constructor : (@__promise__) ->
     @__doneCallbacks__ = []
@@ -77,12 +82,14 @@ performDeferredAction = (action, calledArguments) ->
 
 class Deferred
 
-  # Deferred is a wrapper for $q.defer()
-  # that allows for chaining, ala jQuery.Deferred()
-  # as well as a similar promise interface,
-  # with the added benefit of performing
-  # a $scope.$apply on all promise callbacks,
-  # to keep them in the angular event loop.
+  ###
+  Deferred is a wrapper for $q.defer()
+  that allows for chaining, ala jQuery.Deferred()
+  as well as a similar promise interface,
+  with the added benefit of performing
+  a $scope.$apply on all promise callbacks,
+  to keep them in the angular event loop.
+  ###
 
   constructor : ->
     # $q and $timeout must be injected before creating an instance

@@ -1,6 +1,6 @@
 {
   "name": "angular-promises",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A wrapper for Angular's Deferred and Promise objects",
   "directories": {
     "test": "test",
