@@ -38,6 +38,7 @@ Methods (all return promise instance):
 
 `progress` - Add handler to be called when Deferred object sends a notification
 
+`getRawPromise` - Return the unwrapped $.defer().promise. Note: it is useful for compatibility with other $q methods, like `all`
 
 Note: like jQuery but unlike $q, more than one callback can be registered on `done`, `fail` and `always`.
 

@@ -23,16 +23,16 @@ class Promise
   # Arguments:
   #   promise - $q.defer().promise to be wrapped (required)
 
-  constructor : (promise) ->
+  constructor : (@__promise__) ->
     @__doneCallbacks__ = []
     @__failCallbacks__ = []
     @__alwaysCallbacks__ = []
     @__progressCallbacks__ = []
-    promise.then(
+    @__promise__.then(
       makeApplyCallback('done', this),
       makeApplyCallback('fail', this),
       makeApplyCallback('progress', this))
-    promise.finally makeApplyCallback('always', this)
+    @__promise__.finally makeApplyCallback('always', this)
     this
 
   # Add handler to be called when Deferred object is resolved
@@ -54,6 +54,11 @@ class Promise
   progress : (callback) =>
     @__progressCallbacks__.push callback
     this
+
+  # Return the unwrapped $.defer().promise
+  # Note: it is useful for compatibility with other $q methods, like `all`
+  getRawPromise : =>
+    @__promise__
 
 class QNotDefinedError extends Error
 

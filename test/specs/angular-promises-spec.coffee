@@ -98,3 +98,9 @@ describe 'Deferred', ->
       expect(qDefer.promise.then).toHaveBeenCalledWith(
         jasmine.any(Function), jasmine.any(Function), jasmine.any(Function))
       expect(qDefer.promise.finally).toHaveBeenCalledWith jasmine.any(Function)
+
+    describe 'getRawPromise', ->
+
+      it 'returns the unwrapped $.defer().promise', ->
+        promise = new Deferred().resolve().promise()
+        expect(promise.__promise__).toEqual promise.getRawPromise()
