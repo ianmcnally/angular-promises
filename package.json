@@ -1,6 +1,6 @@
 {
   "name": "angular-promises",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A wrapper for Angular's Deferred and Promise objects",
   "directories": {
     "test": "test",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/imcnally/angular-promises.git"
+    "url": "git://gitlab.com/imcnally/angular-promises.git"
   },
   "keywords": [
     "angular",
@@ -39,6 +39,6 @@
   "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/imcnally/angular-promises/issues"
+    "url": "https://gitlab.com/imcnally/angular-promises/issues"
   }
 }
