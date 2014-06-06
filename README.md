@@ -68,9 +68,9 @@ promise.done(onDone).fail(onFail).always(thingIAlwaysDo);
 
 // All
 var promises = [giveMeAPromise1(), giveMeAPromise2()];
-Deferred.all(promise).done(successFunction).fail(failureFunction);
+Deferred.all(promises).done(successFunction).fail(failureFunction);
 
 // Until
 var promises = [giveMeAPromise1(), giveMeAPromise2()];
-Deferred.until(promise).done(successFunction).fail(failureFunction);
+Deferred.until(promises).done(successFunction).fail(failureFunction);
 ```
