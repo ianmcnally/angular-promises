@@ -3,6 +3,8 @@
 
 angular-promises is a wrapper for Angular's $q.defer that allows for chaining, ala jQuery.Deferred(), as well as a similar promise interface, with the added benefit of performing a $scope.$apply on all promise callbacks, to keep them in the angular event loop.
 
+Additionally, Deferred provides two instances methods, `all` and `until`, that wrap an array of Deferred promise objects and returns a single promise that is fulfilled when all the input objects are fulfilled. You can use these in place of `$q.all`, with more variety.
+
 ## setup
 `npm install`
 
