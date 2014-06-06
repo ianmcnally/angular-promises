@@ -30,6 +30,7 @@ Methods (all but `promise` return deferred instance):
 `promise` - Return the Deferred promise object
 
 Instance methods:
+
 `all` - Returns a single promise, which is fulfilled when all `promises` are resolved or rejected.
 
 `until` - Returns a single promise, which is fulfilled when all `promises` are resolved or until a promise in `promises` is rejected.
