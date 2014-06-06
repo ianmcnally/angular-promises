@@ -225,8 +225,8 @@ By Ian McNally (ia-n.com)
 
 
     /*
-    Returns a single promise, which is filled when all `promises`
-    are resolved or until a promise in `promises` is rejected.
+    Returns a single promise, which is fulfilled when all `promises`
+    are resolved or immediately if a promise in `promises` is rejected.
     
     Params: Array of promises - Deferred().promise() instances
     
