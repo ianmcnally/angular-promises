@@ -1,6 +1,7 @@
 ###
-angular-promises v0.1.0
+angular-promises v0.2.0
 Released under the MIT License
+By Ian McNally (ia-n.com)
 ###
 
 $q = null
@@ -89,6 +90,11 @@ class Deferred
   with the added benefit of performing
   a $scope.$apply on all promise callbacks,
   to keep them in the angular event loop.
+
+  Additionally, Deferred provides two instances methods,
+  `all` and `until`, that wrap an array of Deferred promise objects
+  and returns a single promise that is fulfilled when all
+  the input objects are fulfilled.
   ###
 
   constructor : ->
@@ -99,24 +105,81 @@ class Deferred
     @__promise__ = new Promise @__deferred__.promise
     this
 
-  # Resolve the Deferred object and call its handler
+  ###
+  Resolve the Deferred object and call its handler
+  ###
   resolve : =>
     performDeferredAction.call(this, 'resolve', arguments)
     this
 
-  # Reject the Deferred object and call its handler
+  ###
+  Reject the Deferred object and call its handler
+  ###
   reject : =>
     performDeferredAction.call(this, 'reject', arguments)
     this
 
-  # Call the progress callback on a Deferred object
+  ###
+  Call the progress callback on a Deferred object
+  ###
   notify : =>
     performDeferredAction.call(this, 'notify', arguments)
     this
 
-  # Return the Deferred promise object
+  ###
+  Return the Deferred promise object
+  ###
   promise : =>
     @__promise__
+
+  ###
+  Returns a single promise, which is fulfilled when all `promises`
+  are resolved or rejected.
+
+  Note: this is unlike Deferred.until (or $q.all) which rejects immediately
+    on a rejected promise.
+
+  Params: Array of promises (Deferred().promise() instances)
+
+  Returns: promise
+  ###
+  @all : (promises) ->
+    deferred = new Deferred()
+    fulfillments = resolved : [], rejected : []
+    amtPromises = promises.length
+    for promise in promises
+      throw new InvalidPromiseInstanceError unless promise instanceof Promise
+      promise.done -> fulfillments.resolved.push promise
+      promise.fail -> fulfillments.rejected.push promise
+    checkFulfillments = ->
+      # Not all promises have been fulfilled
+      if fulfillments.resolved.length + fulfillments.rejected.length isnt amtPromises
+        $timeout checkFulfillments, 0
+      # Promises fulfilled, but some rejected
+      else if fulfillments.rejected.length
+        deferred.reject fulfillments
+      # Promises fulfilled, and all resolved
+      else
+        deferred.resolve fulfillments
+    checkFulfillments()
+    deferred.promise()
+
+  ###
+  Returns a single promise, which is fulfilled when all `promises`
+  are resolved or until a promise in `promises` is rejected.
+
+  Params: Array of promises - Deferred().promise() instances
+
+  Returns: promise
+  ###
+  @until : (promises) ->
+    deferred = new Deferred()
+    rawPromises = for promise in promises
+      throw new InvalidPromiseInstanceError unless promise instanceof Promise
+      promise.__promise__
+    $q.all promises
+      .then deferred.resolve, deferred.reject
+    deferred.promise()
 
 angular.module('angular-promises', [])
 .factory 'Deferred', [

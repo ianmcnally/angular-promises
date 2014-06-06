@@ -1,4 +1,5 @@
 # angular-promises
+### v 0.2.0
 
 angular-promises is a wrapper for Angular's $q.defer that allows for chaining, ala jQuery.Deferred(), as well as a similar promise interface, with the added benefit of performing a $scope.$apply on all promise callbacks, to keep them in the angular event loop.
 
@@ -26,6 +27,11 @@ Methods (all but `promise` return deferred instance):
 
 `promise` - Return the Deferred promise object
 
+Instance methods:
+`all` - Returns a single promise, which is fulfilled when all `promises` are resolved or rejected.
+
+`until` - Returns a single promise, which is fulfilled when all `promises` are resolved or until a promise in `promises` is rejected.
+
 ### Promise
 
 Methods (all return promise instance):
@@ -37,8 +43,6 @@ Methods (all return promise instance):
 `always` - Add handler to be called when Deferred object is resolved or reject
 
 `progress` - Add handler to be called when Deferred object sends a notification
-
-`getRawPromise` - Return the unwrapped $.defer().promise. Note: it is useful for compatibility with other $q methods, like `all`
 
 Note: like jQuery but unlike $q, more than one callback can be registered on `done`, `fail` and `always`.
 
@@ -58,4 +62,13 @@ var someAsyncFunction = function() {
 };
 var promise = someAsyncFunction();
 promise.done(onDone).fail(onFail).always(thingIAlwaysDo);
+
+// All
+var promises = [giveMeAPromise1(), giveMeAPromise2()];
+Deferred.all(promise).done(successFunction).fail(failureFunction);
+
+// Until
+// All
+var promises = [giveMeAPromise1(), giveMeAPromise2()];
+Deferred.until(promise).done(successFunction).fail(failureFunction);
 ```
