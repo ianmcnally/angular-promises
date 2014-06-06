@@ -71,7 +71,6 @@ var promises = [giveMeAPromise1(), giveMeAPromise2()];
 Deferred.all(promise).done(successFunction).fail(failureFunction);
 
 // Until
-// All
 var promises = [giveMeAPromise1(), giveMeAPromise2()];
 Deferred.until(promise).done(successFunction).fail(failureFunction);
 ```
