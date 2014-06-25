@@ -52,6 +52,22 @@ Note: like jQuery but unlike $q, more than one callback can be registered on `do
 ## example
 
 ```javascript
+/*
+  Setup
+*/
+// List angular-promises as an app dependency when declaring your module
+var app = angular.module('myGreatApplication', ['angular-promises']);
+
+// To use, inject Deferred, i.e.,
+angular.service('anAjaxThing, ['Deferred', function(Deferred){
+  // ... use Deferred
+}]);
+
+
+/*
+  Usage
+*/
+
 // Deferred object
 var deferred = new Deferred();
 
