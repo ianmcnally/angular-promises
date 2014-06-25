@@ -59,7 +59,7 @@ Note: like jQuery but unlike $q, more than one callback can be registered on `do
 var app = angular.module('myGreatApplication', ['angular-promises']);
 
 // To use, inject Deferred, i.e.,
-angular.service('anAjaxThing, ['Deferred', function(Deferred){
+angular.service('anAjaxThing', ['Deferred', function(Deferred){
   // ... use Deferred
 }]);
 
