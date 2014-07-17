@@ -1,12 +1,12 @@
 {
   "name": "angular-promises",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/imcnally/angular-promises",
   "authors": [
     "Ian McNally <ianmcnally@gmail.com>"
   ],
   "description": "A wrapper for Angular's Deferred and Promise objects",
-  "main": "angular-promises.coffee",
+  "main": "dist/angular-promises.js",
   "keywords": [
     "angular",
     "deferred",
@@ -17,7 +17,6 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components"
   ],
