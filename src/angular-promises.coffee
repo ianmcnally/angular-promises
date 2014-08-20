@@ -61,11 +61,6 @@ class Promise
     @__progressCallbacks__.push callback
     this
 
-  # Return the unwrapped $.defer().promise
-  # Note: it is useful for compatibility with other $q methods, like `all`
-  getRawPromise : =>
-    @__promise__
-
 class QNotDefinedError extends Error
 
   constructor : ->

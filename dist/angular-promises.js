@@ -33,7 +33,6 @@ By Ian McNally (ia-n.com)
   Promise = (function() {
     function Promise(__promise__) {
       this.__promise__ = __promise__;
-      this.getRawPromise = __bind(this.getRawPromise, this);
       this.progress = __bind(this.progress, this);
       this.always = __bind(this.always, this);
       this.fail = __bind(this.fail, this);
@@ -65,10 +64,6 @@ By Ian McNally (ia-n.com)
     Promise.prototype.progress = function(callback) {
       this.__progressCallbacks__.push(callback);
       return this;
-    };
-
-    Promise.prototype.getRawPromise = function() {
-      return this.__promise__;
     };
 
     return Promise;
